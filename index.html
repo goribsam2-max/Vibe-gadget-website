@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google-site-verification" content="ZzsNPzIZ_KcG-ga94KzD5XFr7ltgAYyhlOy72R5pTpg" />
+    <script>
+      (function() {
+        const origLog = console.log;
+        const origError = console.error;
+        const origWarn = console.warn;
+        const origInfo = console.info;
+        const origDebug = console.debug;
+        
+        function shouldHide(args) {
+          for (let i = 0; i < args.length; i++) {
+             const arg = args[i];
+             if (typeof arg === 'string') {
+               const lower = arg.toLowerCase();
+               if (lower.includes('firebase') || lower.includes('gemini') || lower.includes('run.app') || lower.includes('vite') || lower.includes('ai')) {
+                 return true;
+               }
+             } else if (arg && arg.message && typeof arg.message === 'string') {
+                const lower = arg.message.toLowerCase();
+                if (lower.includes('firebase') || lower.includes('gemini') || lower.includes('run.app')) {
+                  return true;
+                }
+             }
+          }
+          return false;
+        }
+        
+        console.log = function(...args) {
+          if (!shouldHide(args)) origLog.apply(console, args);
+        };
+        console.error = function(...args) {
+          if (!shouldHide(args)) origError.apply(console, args);
+        };
+        console.warn = function(...args) {
+          if (!shouldHide(args)) origWarn.apply(console, args);
+        };
+        console.info = function(...args) {
+          if (!shouldHide(args)) origInfo.apply(console, args);
+        };
+        console.debug = function(...args) {
+          if (!shouldHide(args)) origDebug.apply(console, args);
+        };
+      })();
+    </script>
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                DEFAULT: '#10b981',
+                foreground: '#ffffff',
+                50: '#ecfdf5',
+                100: '#d1fae5',
+                200: '#a7f3d0',
+                300: '#6ee7b7',
+                400: '#34d399',
+                500: '#10b981', // Emerald 500
+                600: '#059669',
+                700: '#047857',
+                800: '#065f46',
+                900: '#064e3b',
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              outfit: ['Outfit', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="manifest" href="/manifest.json">
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        // Only initialize OneSignal if on the authorized domain to prevent errors in development/preview
+        const authorizedDomains = ['vibe-gadget.vercel.app', 'www.vibegadgets.shop', 'vibegadgets.shop'];
+        if (authorizedDomains.includes(window.location.hostname)) {
+          await OneSignal.init({
+            appId: "29c39d8a-7be8-404a-8a33-5616086735fa",
+            safari_web_id: "web.onesignal.auto.18f55e14-9585-4855-a0ee-ea6515e10e22",
+            notifyButton: { enable: false },
+          });
+        } else {
+          console.log('OneSignal initialization skipped on this domain.');
+        }
+      });
+    </script>
+    <!-- META_TAGS_PLACEHOLDER -->
+    <title>VibeGadget | Premium Tech Hub</title>
+    <meta name="description" content="Shop premium mobile accessories, gadgets, and more at VibeGadget. Best prices & authentic products." />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.vibegadgets.shop/" />
+    <meta property="og:title" content="VibeGadget | Premium Tech Hub" />
+    <meta property="og:description" content="Shop premium mobile accessories, gadgets, and more at VibeGadget." />
+    <meta property="og:image" content="https://i.ibb.co.com/8m5LntYV/b-Kash-app-logo.png" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.vibegadgets.shop/" />
+    <meta property="twitter:title" content="VibeGadget | Premium Tech Hub" />
+    <meta property="twitter:description" content="Shop premium mobile accessories, gadgets, and more at VibeGadget." />
+    <meta property="twitter:image" content="https://i.ibb.co.com/8m5LntYV/b-Kash-app-logo.png" />
+    <!-- END_META_TAGS_PLACEHOLDER -->
+    <style>
+        :root {
+            --zinc-50: #ffffff;
+            --zinc-100: #fafafa;
+            --zinc-200: #e4e4e7;
+            --zinc-900: #18181b;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--zinc-50);
+            color: var(--zinc-900);
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        img:not(.rounded-full):not(.no-rounded) {
+            border-radius: 15px;
+        }
+        .dark body {
+            background-color: #000000;
+            color: #fafafa;
+        }
+        ::selection {
+            background-color: var(--zinc-900);
+            color: #ffffff;
+        }
+        .dark ::selection {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        ::-webkit-scrollbar { width: 4px; height: 4px; background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--zinc-200); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--zinc-900); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+
+
+        .hover-lift { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .hover-lift:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1); }
+        
+        @keyframes shimmer { 100% { transform: translateX(100%); } }
+        .skeleton { position: relative; overflow: hidden; background-color: var(--zinc-100); border-radius: 12px; }
+        .skeleton::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: translateX(-100%); animation: shimmer 1.5s infinite;
+        }
+
+        .image-zoom-container { overflow: hidden; }
+        .image-zoom-container img { transition: transform 0.4s ease; }
+        .image-zoom-container:hover img { transform: scale(1.05); }
+
+        .snap-scroll-x { scroll-snap-type: x mandatory; }
+        .snap-item { scroll-snap-align: center; }
+
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; }
+        
+        .hover-tilt:hover { transform: scale(1.02); transition: transform 0.3s ease; }
+        
+        /* Minimalist animation classes */
+        @keyframes slideInUpFade { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+        .animate-stagger-1 { animation: slideInUpFade 0.4s ease forwards; animation-delay: 0.05s; opacity: 0; }
+        .animate-stagger-2 { animation: slideInUpFade 0.4s ease forwards; animation-delay: 0.1s; opacity: 0; }
+        .animate-stagger-3 { animation: slideInUpFade 0.4s ease forwards; animation-delay: 0.15s; opacity: 0; }
+
+        @keyframes colorCycle {
+            0%   { color: #ef4444; border-color: #ef4444; fill: #ef4444; } /* Red */
+            10%  { color: #f97316; border-color: #f97316; fill: #f97316; } /* Orange */
+            20%  { color: #eab308; border-color: #eab308; fill: #eab308; } /* Yellow */
+            30%  { color: #22c55e; border-color: #22c55e; fill: #22c55e; } /* Green */
+            40%  { color: #10b981; border-color: #10b981; fill: #10b981; } /* Emerald */
+            50%  { color: #06b6d4; border-color: #06b6d4; fill: #06b6d4; } /* Cyan */
+            60%  { color: #3b82f6; border-color: #3b82f6; fill: #3b82f6; } /* Blue */
+            70%  { color: #8b5cf6; border-color: #8b5cf6; fill: #8b5cf6; } /* Violet */
+            80%  { color: #d946ef; border-color: #d946ef; fill: #d946ef; } /* Fuchsia */
+            90%  { color: #ec4899; border-color: #ec4899; fill: #ec4899; } /* Pink */
+            100% { color: #ef4444; border-color: #ef4444; fill: #ef4444; }
+        }
+
+        @keyframes colorCycleBg {
+            0%   { background-color: #ef4444; }
+            10%  { background-color: #f97316; }
+            20%  { background-color: #eab308; }
+            30%  { background-color: #22c55e; }
+            40%  { background-color: #10b981; }
+            50%  { background-color: #06b6d4; }
+            60%  { background-color: #3b82f6; }
+            70%  { background-color: #8b5cf6; }
+            80%  { background-color: #d946ef; }
+            90%  { background-color: #ec4899; }
+            100% { background-color: #ef4444; }
+        }
+
+        .animate-color-cycle {
+            animation: colorCycle 10s linear infinite;
+        }
+        
+        .animate-color-cycle-bg {
+            animation: colorCycleBg 10s linear infinite;
+        }
+        
+        .animate-color-cycle-hover:hover {
+            animation: colorCycle 5s linear infinite;
+        }
+
+        @media (min-width: 1024px) {
+            h1 { font-size: 4rem !important; font-weight: 500 !important; tracking: tight !important; }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
